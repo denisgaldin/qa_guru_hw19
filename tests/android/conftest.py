@@ -50,22 +50,4 @@ def mobile_management():
     )
 
     yield
-
-    allure.attach(
-        browser.driver.get_screenshot_as_png(),
-        name='screenshot',
-        attachment_type=allure.attachment_type.PNG,
-    )
-
-    allure.attach(
-        browser.driver.page_source,
-        name='screen xml dump',
-        attachment_type=allure.attachment_type.XML,
-    )
-
-    session_id = browser.driver.session_id
-
-    with allure.step('tear down app session'):
-        browser.quit()
-
-    utils.allure.attach_bstack_video(session_id)
+    browser.quit()
