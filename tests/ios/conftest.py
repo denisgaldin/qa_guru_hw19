@@ -1,40 +1,36 @@
-import allure
+from appium.options.ios import XCUITestOptions
 import pytest
-import allure_commons
-from appium.options.android import UiAutomator2Options
-from selene import browser, support
+from selene import browser
 import os
-
 import config
 from utils import attach
 from appium import webdriver
+import allure
+import allure_commons
+from selene import browser, support
 
 
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management():
-    options = UiAutomator2Options().load_capabilities({
-        # Specify device and os_version for testing
-        # 'platformName': 'android',
-        'platformVersion': '9.0',
-        'deviceName': 'Google Pixel 3',
+    options = XCUITestOptions().load_capabilities({
+        # Укажите платформу и версию ОС для тестирования
+        'platformName': 'iOS',
+        'platformVersion': '17',
+        'deviceName': 'iPhone 15',
 
-        # Set URL of the application under test
+        # Укажите путь к приложению для тестирования
         'app': 'bs://sample.app',
 
-        # Set other BrowserStack capabilities
+        # Укажите другие возможности BrowserStack
         'bstack:options': {
             'projectName': 'First Python project',
             'buildName': 'browserstack-build-1',
             'sessionName': 'BStack first_test',
 
-            # Set your access credentials
             'userName': config.bstack_userName,
             'accessKey': config.bstack_accessKey,
         }
     })
-
-    # browser.config.driver_remote_url = 'http://hub.browserstack.com/wd/hub'
-    # browser.config.driver_options = options
 
     with allure.step('init app session'):
         browser.config.driver = webdriver.Remote(
