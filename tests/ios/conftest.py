@@ -1,9 +1,7 @@
 from appium.options.ios import XCUITestOptions
 import pytest
-from selene import browser
 import os
-import config
-from utils import attach
+from cfg import config
 from appium import webdriver
 import allure
 import allure_commons
