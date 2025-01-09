@@ -5,7 +5,7 @@ from appium.options.android import UiAutomator2Options
 from selene import browser, support
 import os
 
-from cfg import config
+from mycfg import config
 from appium import webdriver
 
 

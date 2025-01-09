@@ -1,7 +1,7 @@
 from appium.options.ios import XCUITestOptions
 import pytest
 import os
-from cfg import config
+from mycfg import config
 from appium import webdriver
 import allure
 import allure_commons
